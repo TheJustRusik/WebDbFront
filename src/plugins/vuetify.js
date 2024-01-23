@@ -4,8 +4,6 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 
-console.log("Loool")
-
 export default createVuetify({
   icons: {
     defaultSet: 'mdi',
@@ -14,15 +12,9 @@ export default createVuetify({
       mdi,
     },
   },
+  
   theme: {
-    themes: {
-      light: {
-        colors: {
-          primary: '#1867C0',
-          secondary: '#5CBBF6',
-        },
-      },
-    },
+    defaultTheme: 'dark'
   },
   
 })
