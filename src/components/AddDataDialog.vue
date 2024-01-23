@@ -1,10 +1,55 @@
 <script setup>
     import { ref } from 'vue'
 
+
+    let formRef = ref(null)
     let dates = ref([])
+    let comment = ref('');
+    let rules = [
+        value => !!value || 'Field is required',
+    ]
 
     function addData(){
-        dates.value.push(1)
+        dates.value.push(ref(comment.value))
+        comment.value = ''
+    }
+
+    async function validate() {
+        const { valid } = await formRef.value.validate()
+
+        if (valid && haveData()) {
+            console.log("Data validated, everything is good!")
+            return true;
+        }else{
+            console.log("Data did not validated...")
+            return false;
+        }
+        
+    }
+
+    function haveData(){
+        if (dates.value.length !== 0 || comment.value !== ''){
+            console.log(`comment is ${comment.value}`)
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    async function sendData(){
+        if(await validate()){
+            let ready_data = []
+            for ( let data of dates.value){
+                ready_data.push(data.value)
+            }
+
+            if (comment.value !== ''){
+                ready_data.push(comment.value);
+            }
+            alert(`Sending this data to server:\n${ready_data}`)
+            dates.value = []
+            comment.value = ''
+        }
     }
 </script>
 
@@ -19,16 +64,17 @@
             <v-card-text>
                 Add the data you want to send to the database. You just need to fill out the comments field, the ID field will be generated automatically.
             </v-card-text>
-            <div class="mx-6">
-                <v-text-field v-for="data in dates" variant="underlined" clearable label="Set comment..."></v-text-field>
-                <v-text-field append-icon="mdi-plus" @click:append="addData" variant="underlined" clearable label="Set comment..."></v-text-field>
-            </div>
+            <v-form ref="formRef" @submit.prevent class="mx-6">
+                <v-text-field :rules="rules" v-for="data in dates" :model-value="data" variant="underlined" clearable label="Comment"></v-text-field>
+                <v-text-field append-icon="mdi-plus" v-model="comment" @click:append="addData" variant="underlined" clearable label="Add new comment..."></v-text-field>
+                <v-spacer></v-spacer>
+                
+            </v-form>
 
             
             <v-card-actions>
-                <v-spacer></v-spacer>
                 <v-btn text="Cancel" @click="isActive.value = false"></v-btn>
-                <v-btn text="Send" @click="isActive.value = false"></v-btn>
+                <v-btn text="Send" @click="sendData"></v-btn>
             </v-card-actions>
             </v-card>
         </template>
