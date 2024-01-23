@@ -1,7 +1,8 @@
 <script setup>
   import { ref } from 'vue'
   import axios from 'axios';
-
+  import { mdiCalendar } from '@mdi/js';
+  
   let items = ref([]);
 
   async function loadData(){
@@ -21,6 +22,8 @@
     <div class="divide-y divide-[#30c784]">
       <div>
         <p class="text-[#dadad1] text-2xl font-bold pb-4">Hello!</p>
+        <v-icon :icon="mdiCalendar" />
+        <v-btn prepend-icon="mdi-calendar" size="x-large">Lol</v-btn>
         <v-btn class="mb-6" :onclick="loadData">Get Data</v-btn>
         
       </div>
