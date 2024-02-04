@@ -22,7 +22,7 @@
     currentState.value = "Loading data..."
     loadingGetData = true
     try {
-      const response = await axios.get('http://localhost:8080/api/rofres');
+      const response = await axios.get('http://95.164.19.164:8080/api/rofres');
       items.value = response.data;
       showData.value = true
       currentState.value = "Data successfully loaded!"

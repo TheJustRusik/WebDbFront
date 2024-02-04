@@ -54,7 +54,7 @@
                 ready_data.push(comment.value);
             }
 
-            axios.post('http://localhost:8080/api/rofres', ready_data)
+            axios.post('http://95.164.19.164:8080/api/rofres', ready_data)
                 .then(response => {
                     console.log(response.data)
                     emit('addedData' ,'success', "Successfuly added data!")
