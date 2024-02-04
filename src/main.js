@@ -3,14 +3,13 @@ import './assets/main.css'
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+
 import vuetify from './plugins/vuetify'
 import SvgIcon from '@jamescoyle/vue-icon'
 
 const vuetify1 = createVuetify({
-    components,
-    directives,
+    //components,
+    //directives,
     vuetify
   })
 
