@@ -56,7 +56,7 @@
 
 <template>
   <v-app :theme="currentTheme">
-    <div class="mx-2 mt-2 md:mx-8 md:mt-4 lg:mx-24 lg:mt-8">
+    <div class="mx-4 mt-4">
       <div class="divide-y divide-[#30c784]">
         <div>
           <div class="flex items-center justify-between mb-2">
@@ -64,13 +64,13 @@
             <v-btn elevation="8" :icon="switchThemeIcon" @click="switchTheme"/>
                
           </div>
-          <div class="flex justify-between">  
+          <div class="flex mb-1 justify-between">  
             <div class="grid gap-4 sm:grid-cols-2">
               <v-btn elevation="8" :loading="loadingGetData" size="x-large" prepend-icon="mdi-database-arrow-down" :onclick="loadData">Get Data</v-btn>
             
               <AddDataDialog @addedData="showAlert"></AddDataDialog>
             </div>
-            <div class="grid gap-4 sm:grid-cols-2">
+            <div class="grid mb-1 gap-4 sm:grid-cols-2">
               <LoginDialog></LoginDialog>
               <RegisterDialog></RegisterDialog>
             </div>
