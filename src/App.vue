@@ -56,21 +56,21 @@
 
 <template>
   <v-app :theme="currentTheme">
-    <div class="mx-24 mt-8" >
+    <div class="mx-2 mt-2 md:mx-8 md:mt-4 lg:mx-24 lg:mt-8">
       <div class="divide-y divide-[#30c784]">
         <div>
           <div class="flex items-center justify-between mb-2">
-            <p class="text-2xl font-bold pb-4">Hello! Here you can <span class="text-lime-500">get</span> or <span class="text-red-500">add</span> some data...</p>
+            <p class="text-2xl font-bold md:pb-4">Hello! Here you can <span class="text-lime-500">get</span> or <span class="text-red-500">add</span> some data...</p>
             <v-btn elevation="8" :icon="switchThemeIcon" @click="switchTheme"/>
                
           </div>
           <div class="flex justify-between">  
-            <div>
-              <v-btn elevation="8" :loading="loadingGetData" class="mb-6" size="x-large" prepend-icon="mdi-database-arrow-down" :onclick="loadData">Get Data</v-btn>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <v-btn elevation="8" :loading="loadingGetData" size="x-large" prepend-icon="mdi-database-arrow-down" :onclick="loadData">Get Data</v-btn>
             
               <AddDataDialog @addedData="showAlert"></AddDataDialog>
             </div>
-            <div>
+            <div class="grid gap-4 sm:grid-cols-2">
               <LoginDialog></LoginDialog>
               <RegisterDialog></RegisterDialog>
             </div>

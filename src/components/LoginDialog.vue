@@ -9,7 +9,7 @@
 <template>
     <v-dialog width="500" v-model="isActive">
         <template v-slot:activator="{ props }">
-            <v-btn variant="text" v-bind="props" class="mb-6 ml-6" size="x-large">Login</v-btn>
+            <v-btn variant="text" v-bind="props" size="x-large">Login</v-btn>
         </template>
 
         <template v-slot:default="{ isActive }">

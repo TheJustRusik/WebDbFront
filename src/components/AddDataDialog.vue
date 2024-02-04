@@ -84,7 +84,7 @@
 <template>
     <v-dialog width="500" v-model="isActive">
         <template v-slot:activator="{ props }">
-            <v-btn elevation="8" v-bind="props" class="mb-6 ml-6" size="x-large" prepend-icon="mdi-database-plus">Add Data</v-btn>
+            <v-btn elevation="8" v-bind="props" size="x-large" prepend-icon="mdi-database-plus">Add Data</v-btn>
         </template>
 
         <template v-slot:default="{ isActive }">
