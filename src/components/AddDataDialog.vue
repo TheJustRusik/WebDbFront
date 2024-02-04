@@ -54,7 +54,7 @@
                 ready_data.push(comment.value);
             }
 
-            axios.post('http://95.164.19.164:8080/api/rofres', ready_data)
+            axios.post('https://springbd.landless-city.net/api/rofres', ready_data)
                 .then(response => {
                     console.log(response.data)
                     emit('addedData' ,'success', "Successfuly added data!")
@@ -84,7 +84,7 @@
 <template>
     <v-dialog width="500" v-model="isActive">
         <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" class="mb-6 ml-6" size="x-large" prepend-icon="mdi-database-plus">Add Data</v-btn>
+            <v-btn elevation="8" v-bind="props" class="mb-6 ml-6" size="x-large" prepend-icon="mdi-database-plus">Add Data</v-btn>
         </template>
 
         <template v-slot:default="{ isActive }">

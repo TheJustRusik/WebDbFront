@@ -8,10 +8,22 @@
   import RegisterDialog from './components/RegisterDialog.vue';
 
   const theme = useTheme()
+  let currentTheme = ref('dark')
+  let switchThemeIcon = ref('mdi-white-balance-sunny')
+  function switchTheme(){
+    if (currentTheme.value === 'dark'){
+      currentTheme.value = 'light'
+      switchThemeIcon.value = 'mdi-weather-night'
+    }else{
+      currentTheme.value = 'dark'
+      switchThemeIcon.value = 'mdi-white-balance-sunny'
+    }
+  }
 
   let alert = ref(false)
   let alertType = ref('')
   let alertText = ref('')
+
 
   let items = ref([]);
   let showData = ref(false)
@@ -22,7 +34,7 @@
     currentState.value = "Loading data..."
     loadingGetData = true
     try {
-      const response = await axios.get('http://95.164.19.164:8080/api/rofres');
+      const response = await axios.get('https://springbd.landless-city.net/api/rofres');
       items.value = response.data;
       showData.value = true
       currentState.value = "Data successfully loaded!"
@@ -43,14 +55,18 @@
 </script>
 
 <template>
-  <v-app theme="dark">
+  <v-app :theme="currentTheme">
     <div class="mx-24 mt-8" >
       <div class="divide-y divide-[#30c784]">
         <div>
-          <p class="text-2xl font-bold pb-4">Hello! Here you can <span class="text-lime-500">get</span> or <span class="text-red-500">add</span> some data...</p>
-          <div class="flex justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-2xl font-bold pb-4">Hello! Here you can <span class="text-lime-500">get</span> or <span class="text-red-500">add</span> some data...</p>
+            <v-btn elevation="8" :icon="switchThemeIcon" @click="switchTheme"/>
+               
+          </div>
+          <div class="flex justify-between">  
             <div>
-              <v-btn :loading="loadingGetData" class="mb-6" size="x-large" prepend-icon="mdi-database-arrow-down" :onclick="loadData">Get Data</v-btn>
+              <v-btn elevation="8" :loading="loadingGetData" class="mb-6" size="x-large" prepend-icon="mdi-database-arrow-down" :onclick="loadData">Get Data</v-btn>
             
               <AddDataDialog @addedData="showAlert"></AddDataDialog>
             </div>
